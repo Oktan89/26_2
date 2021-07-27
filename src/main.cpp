@@ -3,7 +3,7 @@
 int main(){
     
    Person person;
-   Person person1("test ~!");
+   Person person1("test 2");
    person.print();
    person1.print();
    
