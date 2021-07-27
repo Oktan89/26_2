@@ -1,6 +1,11 @@
 #include <iostream>
-
+#include "person.h"
 int main(){
-
-    return 0;
+    
+   Person person;
+   Person person1("test ~!");
+   person.print();
+   person1.print();
+   
+   return 0;
 }
