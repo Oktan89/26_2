@@ -1,32 +1,29 @@
+#include <string>
+#include <exception>
+#include <iostream>
 #include "person.h"
 
-Person::Person(const char* name){
-
-    int  s_name = 0;
-    p_name = nullptr;
-    p_number = nullptr;
+Person::Person(const std::string &name, const std::string &number){
+    try{
+        p_name = new std::string(name);
+    }catch(std::exception &exception){
+        std::cout<<"Person::name : "<<exception.what()<<std::endl;
+    }
     
-        while(name[s_name] != '\0'){
-            ++s_name;
-        }
-        ++s_name;
+    try{
+        p_number = new std::string(number);
+    }catch(std::exception &exception){
+        std::cout<<"Person::nomber : "<<exception.what()<<std::endl;
+    }
     
-        try{
-            //throw std::runtime_error("bad alloc");
-            p_name = new char[s_name];
-        }catch(std::exception &exception){
-            std::cout<<"Error "<<exception.what()<<std::endl;
-        }
-    
-        if(p_name){
-            for(int i = 0; i < s_name; ++i){
-                p_name[i] = name[i];
-            }
-        }      
-        
 }
 
 Person::~Person(){
     delete p_name;
     delete p_number;
+}
+
+void Person::print(){
+    std::cout<< ((p_name)? p_name->c_str() : "No name")<<" ";
+    std::cout<< ((p_number)? p_number->c_str() : "+7(___) ___ __ __")<<std::endl;
 }

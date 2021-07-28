@@ -2,10 +2,9 @@
 #include "person.h"
 int main(){
     
-   Person person;
-   Person person1("test 2");
+   Person person("Ruslan", "+79028270125");
+   Person o;
    person.print();
-   person1.print();
-   
+   o.print();
    return 0;
 }

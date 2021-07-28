@@ -1,14 +1,14 @@
 #pragma once
-#include <iostream>
-#include <exception>
+#include <string>
+
+
 
 class Person{
-    char* p_name;
-    char* p_number;
+    std::string* p_name;
+    std::string* p_number;
 public:
-    Person(const char* name = "noname");
-    ~Person();
-    void print(){
-        std::cout<<p_name<<std::endl;
-    }
+    Person(): p_name(nullptr), p_number(nullptr) {}
+    Person(const std::string &name, const std::string &number);
+    ~Person(); 
+    void print();
 };
