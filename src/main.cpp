@@ -2,7 +2,7 @@
 #include "person.h"
 int main(){
     
-   Person person("Ruslan", "+79028270125");
+   Person person("Ruslan", "+7 902 827 01 25");
    Person o;
    person.print();
    o.print();

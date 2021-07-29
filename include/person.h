@@ -4,10 +4,10 @@
 
 
 class Person{
-    std::string* p_name;
-    std::string* p_number;
+    std::string* name;
+    std::string* number;
 public:
-    Person(): p_name(nullptr), p_number(nullptr) {}
+    Person(): name(nullptr), number(nullptr) {}
     Person(const std::string &name, const std::string &number);
     ~Person(); 
     void print();
