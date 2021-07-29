@@ -1,3 +1,4 @@
+#include <fstream>
 #include "number.h"
 
 bool Number::setNumber(const std::string &number)
@@ -6,15 +7,15 @@ bool Number::setNumber(const std::string &number)
     {
         return false;
     }
-    else if (number.size() > 12)
+    else if (number.size() > 16 || number.size() < 10)
     {
         return false;
     }
 
     
-    for (int i = 0; i < number.size(); ++i)
+    for (int i = 0, j = 0; i < number.size(); ++i, ++j)
     {
-        if (i == 0)
+        if (j == 0)
         {
             if (number[i] == '+')
             {
@@ -23,28 +24,67 @@ bool Number::setNumber(const std::string &number)
             else
             {
                 this->number.push_back('+');
+                ++j;
             }
         }
-        if (i == 1)
+        if (j == 1)
         {
-            if (number[i] != '7')
+            if (number[i] == '7' || number[i] == '8')
             {
-                return false;
+                this->number.push_back('7');
             }
             else
             {
-                this->number.push_back(number[i]);
+                this->number.push_back('7');
+                ++j;
             }
         }
-        if (i >= 2)
+        if (j >= 2)
         {
+            if (number[i] == ' ' || number[i] == '-')
+            {
+                continue;
+            }
             if (!isdigit(number[i]))
             {
+                this->number.clear();
                 return false;
             }
             this->number.push_back(number[i]);
         }
     }
-
+    if (this->number.size()>12)
+    {
+        this->number.clear();
+        return false;
+    }
+    findOperator();
     return true;
+}
+
+void Number::findOperator()
+{
+    std::ifstream file("DEF-9xx.csv");
+    std::string buff;
+    std::string cod = number.substr(2, 3);
+    std::string num = number.substr(5, 7);
+    while(!file.eof())
+    {
+        std::getline(file, buff);
+        if(buff.substr(0,3) == cod)
+        {
+            if(num > buff.substr(4, 7) && num < buff.substr(12, 7))
+            {
+                const auto _pos = buff.find_last_of(';');
+                _region = buff.substr(_pos+1);
+                const auto __pos = buff.rfind(';', _pos-1);
+                _operator = buff.substr(__pos+1, _pos-__pos-1);
+                std::cout<<buff<<std::endl;
+                break;
+            }
+        }
+        
+    }
+   
+    file.close();
 }
