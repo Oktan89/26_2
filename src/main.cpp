@@ -1,10 +1,11 @@
 #include <iostream>
 #include "person.h"
+#include "number.h"
+
 int main(){
     
-   Person person("Ruslan", "+7 902 827 01 25");
-   Person o;
-   person.print();
-   o.print();
+   Number number;
+   std::cout<<number.setNumber("17")<<std::endl;
+   number.print();
    return 0;
 }
