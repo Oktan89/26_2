@@ -8,7 +8,7 @@ class Number
     std::string number;
     std::string _operator;
     std::string _region;
-    void findOperator();
+    bool findOperator();
 
 public:
     bool setNumber(const std::string &number);

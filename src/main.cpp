@@ -5,7 +5,7 @@
 int main(){
     
    Number number;
-   std::cout<<number.setNumber("9180060444")<<std::endl;
+   number.setNumber("9028270125");
    number.print();
    return 0;
 }

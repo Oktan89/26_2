@@ -58,11 +58,11 @@ bool Number::setNumber(const std::string &number)
         this->number.clear();
         return false;
     }
-    findOperator();
-    return true;
+    
+    return findOperator();
 }
 
-void Number::findOperator()
+bool Number::findOperator()
 {
     std::ifstream file("DEF-9xx.csv");
     std::string buff;
@@ -79,12 +79,18 @@ void Number::findOperator()
                 _region = buff.substr(_pos+1);
                 const auto __pos = buff.rfind(';', _pos-1);
                 _operator = buff.substr(__pos+1, _pos-__pos-1);
-                std::cout<<buff<<std::endl;
+                //std::cout<<buff<<std::endl;
                 break;
             }
         }
         
     }
-   
+    
     file.close();
+    if(_region.size() == 0)
+    {
+        number.erase();
+        return false;
+    }
+    return true;
 }
