@@ -1,4 +1,5 @@
 #include <fstream>
+#include <ostream>
 #include <utility>
 #include "number.h"
 
@@ -110,4 +111,17 @@ const char* Number::getOperator()
 const char* Number::getRegion()
 {
     return (_region.size() == 0)? "The region is not defined" : _region.c_str();
+}
+
+std::ostream& operator<< (std::ostream &out, const Number* _number)
+{
+    if(_number != nullptr && _number->number.size() != 0)
+    {
+        out<<_number->number<<std::endl;
+        out<<_number->_operator<<std::endl;
+        out<<_number->_region<<std::endl;
+
+    }
+    
+    return out;
 }
