@@ -17,7 +17,7 @@ int main(){
       std::cout<<it.second<<std::endl;
       std::cout<<number.getOperator()<<std::endl;
       std::cout<<number.getRegion()<<std::endl;
-   }
+   } 
    
    return 0;
 }
