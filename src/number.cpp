@@ -1,15 +1,16 @@
 #include <fstream>
+#include <utility>
 #include "number.h"
 
-bool Number::setNumber(const std::string &number)
+std::pair<bool, const char*> Number::setNumber(const std::string &number)
 {
     if (number.empty())
     {
-        return false;
+        return std::make_pair(false, "The number is not specified");
     }
     else if (number.size() > 16 || number.size() < 10)
     {
-        return false;
+        return std::make_pair(false, "Incorrect number of digits in the number");
     }
 
     
@@ -48,7 +49,7 @@ bool Number::setNumber(const std::string &number)
             if (!isdigit(number[i]))
             {
                 this->number.clear();
-                return false;
+                return std::make_pair(false, "Incorrect number");
             }
             this->number.push_back(number[i]);
         }
@@ -56,13 +57,13 @@ bool Number::setNumber(const std::string &number)
     if (this->number.size()>12)
     {
         this->number.clear();
-        return false;
+        return std::make_pair(false, "Incorrect number max size");
     }
     
     return findOperator();
 }
 
-bool Number::findOperator()
+std::pair<bool, const char*> Number::findOperator()
 {
     std::ifstream file("DEF-9xx.csv");
     std::string buff;
@@ -87,10 +88,26 @@ bool Number::findOperator()
     }
     
     file.close();
+
     if(_region.size() == 0)
     {
         number.erase();
-        return false;
+        return std::make_pair(false, "the number is not a cellular number");
     }
-    return true;
+    return std::make_pair(true, number.c_str());
+}
+
+const char* Number::getNumber()
+{
+    return (number.size() == 0)? "Number not set" : number.c_str();
+}
+
+const char* Number::getOperator()
+{
+    return (_operator.size() == 0)? "The operator is not defined" : _operator.c_str();
+}
+
+const char* Number::getRegion()
+{
+    return (_region.size() == 0)? "The region is not defined" : _region.c_str();
 }

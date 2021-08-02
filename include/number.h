@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <utility>
 #include <string>
 
 class Number
@@ -8,10 +9,18 @@ class Number
     std::string number;
     std::string _operator;
     std::string _region;
-    bool findOperator();
+    /**
+     * @brief Ищет название оператора по номеру
+     * 
+     * @return std::pair<bool, const char*> Возвращает false или true если оператор найден и соответсвенно описание ошибки или корректный номер телефона
+     */
+    std::pair<bool, const char*> findOperator();
 
 public:
-    bool setNumber(const std::string &number);
+    std::pair<bool, const char*> setNumber(const std::string &number);
+    const char* getNumber();
+    const char* getOperator();
+    const char* getRegion();
     void print()
     {
         std::cout<<number<<std::endl;

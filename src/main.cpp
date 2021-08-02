@@ -5,7 +5,19 @@
 int main(){
     
    Number number;
-   number.setNumber("+79028270125");
-   number.print();
+   auto it = number.setNumber("9028270125");
+   if(it.first != true)
+   {
+      std::cout<<it.second<<std::endl;
+      std::cout<<number.getOperator()<<std::endl;
+      std::cout<<number.getRegion()<<std::endl;
+   }
+   else
+   {
+      std::cout<<it.second<<std::endl;
+      std::cout<<number.getOperator()<<std::endl;
+      std::cout<<number.getRegion()<<std::endl;
+   }
+   
    return 0;
 }
