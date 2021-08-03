@@ -119,8 +119,8 @@ std::ostream& operator<< (std::ostream &out, const Number* _number)
     {
         out<<_number->number<<std::endl;
         out<<_number->_operator<<std::endl;
-        out<<_number->_region<<std::endl;
-
+        out<<_number->_region<<std::endl;  
+ 
     }
     
     return out;

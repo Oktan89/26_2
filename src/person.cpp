@@ -18,11 +18,15 @@ Person::Person(const std::string &name, const std::string &number)
     try
     {
         this->p_number = new Number;
-        auto ret = p_number->setNumber(number);
-        if(!ret.first)
+        if(number.size() != 0)
         {
-            std::cout<<ret.second<<std::endl;
+            auto ret = p_number->setNumber(number);
+            if(!ret.first)
+            {
+                std::cout<<ret.second<<std::endl; 
+            }
         }
+        
     }
     catch (std::exception &exception)
     {
@@ -47,32 +51,25 @@ std::pair<bool, const char*> Person::setNumber(const std::string &number)
     return p_number->setNumber(number);
 }
 
-std::pair<bool, const char*> Person::getName()
+void Person::setName(const std::string &name)
 {
-    if(p_name)
-    {
-        return std::make_pair(true, p_name->c_str());
-    }
-    else
-    {
-        return std::make_pair(false, "noname");
-    }
-    
+    p_name->replace(0, name.size(), name);
 }
 
-std::pair<bool, const char*> Person::getNumber()
+const char* Person::getName()
 {
-    if(p_number)
-    {
-        return std::make_pair(true, p_number->getNumber());
-    }
-    else
-    {
-        return std::make_pair(false, "+7 000 000 00 00");
-    }
     
+        return p_name->c_str(); 
+       
 }
 
+const char* Person::getNumber()
+{
+
+    return p_number->getNumber();
+        
+}
+ 
 Number* Person::getNumberInfo()
 {
     return p_number;

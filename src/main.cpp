@@ -4,10 +4,11 @@
 
 int main(){
     
-   Person test("Ruslan", "89028270125");
-   
-   std::cout<<test.getNumberInfo();
-  
-  
+   Person test;
+
+   test.setName("Ruslan");
+   test.setNumber("89028270125");
+   test.print();
+
    return 0;
 }
