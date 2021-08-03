@@ -55,10 +55,10 @@ std::pair<bool, const char*> Number::setNumber(const std::string &number)
             this->number.push_back(number[i]);
         }
     }
-    if (this->number.size()>12)
+    if (this->number.size() !=12)
     {
         this->number.clear();
-        return std::make_pair(false, "Incorrect number max size");
+        return std::make_pair(false, "Incorrect number size");
     }
     
     return findOperator();

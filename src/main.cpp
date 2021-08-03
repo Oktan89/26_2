@@ -1,14 +1,12 @@
 #include <iostream>
-#include "person.h"
+#include "phone.h"
 
 
 int main(){
     
-   Person test;
+    Phone test;
 
-   test.setName("Ruslan");
-   test.setNumber("89028270125");
-   test.print();
+   test.addPerson();
 
    return 0;
 }
