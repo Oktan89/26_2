@@ -57,6 +57,7 @@ bool Phone::addPerson()
     auto bok = addresBok.insert(std::make_pair(newPerson->getName(), newPerson));
     if (bok.second)
     {
+        p_addresBok.insert(std::make_pair(newPerson->getNumber(), newPerson));
         std::cout << "The contact was successfully added" << std::endl;
         std::cout << bok.first->first << std::endl;
         std::cout << bok.first->second->getNumberInfo();
@@ -66,6 +67,7 @@ bool Phone::addPerson()
         std::cout << "Error: Such a contact already exists" << std::endl;
         std::cout << bok.first->first << std::endl;
         std::cout << bok.first->second->getNumberInfo();
+        delete newPerson;
         return false;
     }
     maxName = (maxName > contact.size()) ? maxName : contact.size();
