@@ -104,3 +104,74 @@ void Phone::drawBook()
                   << ret->getOperator() << " " << ret->getRegion() << std::endl;
     }
 }
+
+void Phone::callPerson(const std::string &contact)
+{
+    if (contact[0] == '+')
+    {
+        auto it = p_addresBok.find(contact);
+        if (it != p_addresBok.end())
+        {
+            drawCall(it);
+        }
+        else
+        {
+            std::cout << "Contact not found" << std::endl;
+        }
+    }
+    else
+    {
+        auto it = addresBok.find(contact);
+        if (it != addresBok.end())
+        {
+            drawCall(it);
+        }
+        else
+        {
+            std::cout << "Contact not found" << std::endl;
+        }
+    }
+}
+
+void Phone::sendMessage(const std::string &contact, const std::string &message)
+{
+    if (contact[0] == '+')
+    {
+        auto it = p_addresBok.find(contact);
+        if (it != p_addresBok.end())
+        {
+            drawsendMessage(it, message);
+        }
+        else
+        {
+            std::cout << "Contact not found" << std::endl;
+        }
+    }
+    else
+    {
+        auto it = addresBok.find(contact);
+        if (it != addresBok.end())
+        {
+            drawsendMessage(it, message);
+        }
+        else
+        {
+            std::cout << "Contact not found" << std::endl;
+        }
+    }
+}
+
+void Phone::drawCall(const std::map<std::string, Person *>::iterator &it)
+{
+    clear();
+    std::cout << "CALL..." << it->second->getName() << " " << it->second->getNumber() << std::endl;
+    std::cout << "The subscriber does not answer, please try to call later..." << std::endl;
+}
+
+void Phone::drawsendMessage(const std::map<std::string, Person *>::iterator &it, const std::string &message)
+{
+    clear();
+    std::cout << "SEND MESSAGE..." << it->second->getName() << " " << it->second->getNumber() << std::endl;
+    std::cout << "Message: [ " << message << " ]" << std::endl;
+    std::cout << "The message has been sent OK" << std::endl;
+}
