@@ -9,7 +9,10 @@ Phone::Phone()
 {
 
     clear();
+    std::cout<<"Power ON"<<std::endl;
+    std::cout<<"SKILLBOX PHONE"<<std::endl;
 }
+    
 
 Phone::~Phone()
 {
